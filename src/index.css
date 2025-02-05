@@ -66,11 +66,13 @@ main {
 
 ul.ingredients-list {
   margin-bottom: 48px;
+  /* list-style: none; */
 }
 
 ul.ingredients-list > li {
   color: #475467;
   line-height: 28px;
+  text-align: left;
 }
 
 .get-recipe-container {
