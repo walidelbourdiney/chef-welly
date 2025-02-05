@@ -113,6 +113,7 @@ ul.ingredients-list > li {
   line-height: 28px;
   font-size: 1.125rem;
   font-weight: 400;
+  text-align: left;
 }
 
 .suggested-recipe-container ul li,
