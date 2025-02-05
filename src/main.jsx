@@ -5,25 +5,25 @@ import { getRecipeFromMistral } from "./ai.js";
 
 export default function Main() {
   const [ingredients, setIngredients] = React.useState([
-    "all the main spices",
-    "pasta",
-    "ground beef",
-    "tomato paste",
+    
   ]);
   const [getRecipe, setGetRecipe] = React.useState(false);
 
-  function toggleRecipeShown() {
-    getRecipeFromMistral();
+  async function toggleRecipeShown() {
+    const recipeResult = await getRecipeFromMistral(ingredients);
+    
+    setGetRecipe(recipeResult);
   }
 
   const ingredientsListItems = ingredients.map((ingredient) => (
     <li key={ingredient}>{ingredient}</li>
   ));
 
-  function addIngredient(formData) {
+  const addIngredient = React.useCallback((formData) => {
     const newIngredient = formData.get("ingredient");
-    setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
-  }
+    if (!newIngredient) return;
+    setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
+  }, []);
 
   return (
     <main>
@@ -33,6 +33,7 @@ export default function Main() {
           placeholder="e.g. oregano"
           aria-label="Add ingredient"
           name="ingredient"
+          required
         />
         <button>Add ingredient</button>
       </form>
