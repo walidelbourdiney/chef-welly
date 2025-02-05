@@ -5,7 +5,6 @@ import Main from "./main";
 export default function App() {
   return (
     <>
-      <p>hello</p>
       <Header />
       <Main />
     </>
